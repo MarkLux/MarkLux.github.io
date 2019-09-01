@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>记一次服务器配置(LAMP) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="（2016-08）购买了腾讯云的云服务器并成功在服务器上部署lamp和laravel框架 记录如下：  注： 本文以127.0.1.1指代远程服务器的公网地址 ssh连接使用ssh命令可以快速连接到服务器主机的终端。 但是首先要知道服务器主机的密码以及用户名。此次服务器采用 Ubuntu Server 14.04 LTS X64 的架构，初始用户名不为root（这跟centOS不一样），而且ro">
+<meta name="keywords" content="lamp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次服务器配置(LAMP)">
+<meta property="og:url" content="http://yoursite.com/2016/09/23/7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="（2016-08）购买了腾讯云的云服务器并成功在服务器上部署lamp和laravel框架 记录如下：  注： 本文以127.0.1.1指代远程服务器的公网地址 ssh连接使用ssh命令可以快速连接到服务器主机的终端。 但是首先要知道服务器主机的密码以及用户名。此次服务器采用 Ubuntu Server 14.04 LTS X64 的架构，初始用户名不为root（这跟centOS不一样），而且ro">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-01T07:31:33.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次服务器配置(LAMP)">
+<meta name="twitter:description" content="（2016-08）购买了腾讯云的云服务器并成功在服务器上部署lamp和laravel框架 记录如下：  注： 本文以127.0.1.1指代远程服务器的公网地址 ssh连接使用ssh命令可以快速连接到服务器主机的终端。 但是首先要知道服务器主机的密码以及用户名。此次服务器采用 Ubuntu Server 14.04 LTS X64 的架构，初始用户名不为root（这跟centOS不一样），而且ro">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/7/" class="article-date">
+  <time datetime="2016-09-22T16:00:00.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次服务器配置(LAMP)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>（2016-08）购买了腾讯云的云服务器并成功在服务器上部署lamp和laravel框架 记录如下：</p>
+</blockquote>
+<p><em>注： 本文以127.0.1.1指代远程服务器的公网地址</em></p>
+<h3 id="ssh连接"><a href="#ssh连接" class="headerlink" title="ssh连接"></a>ssh连接</h3><p>使用ssh命令可以快速连接到服务器主机的终端。</p>
+<p>但是首先要知道服务器主机的密码以及用户名。此次服务器采用 <strong>Ubuntu Server 14.04 LTS X64</strong> 的架构，初始用户名不为root（这跟centOS不一样），而且root用户没有固定密码（使用sudo时根据用户密码动态生成，你在切换到sudo的时候还是输入了你自己的用户密码），不过可以手动指派。</p>
+<p>在本地终端运行ssh(用户名user):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@127.0.1.1</span><br></pre></td></tr></table></figure>
+
+<p>然后输入user的密码就可以成功登陆远程主机。</p>
+<p><em>疑问：没有像github那样的ssh key认证吗</em></p>
+<h3 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h3><p>所有的包全部利用apt-get安装即可</p>
+<p><strong>apache2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>mysql:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure>
+
+<p>(安装过程中要输入密码之类的配置)</p>
+<p><strong>php7.0:</strong></p>
+<p>由于使用的是14.04 apt默认源里面还没有php7.0，先添加ppa再update然后就可以安装相关组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install  php7.0-mysql php7.0-curl php7.0-json php7.0-cgi  php7.0 libapache2-mod-php7.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>！遇到的一些问题</strong></p>
+<p>刚开始想顺道安装一个phpmyadmin后来安装完毕重启apache2时出现bug：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AH00558: apache2: Could not reliably determine the server&apos;s fully qualified domain name, using 127.0.1.1. Set the &apos;ServerName&apos; directive globally to suppress this message</span><br></pre></td></tr></table></figure>
+
+<p>无法重启apache2服务，解决办法是，在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">ServerName localhost</span><br></pre></td></tr></table></figure></p>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>即可（注意sudo权限）</p>
+<h3 id="mysql远程连接"><a href="#mysql远程连接" class="headerlink" title="mysql远程连接"></a>mysql远程连接</h3><p>安装完mysql后果断还是抛弃了pma这种蛋疼的东西，想用mysql-workbench来操控服务器端的数据库。但是mysql默认不允许远程访问，这个需要修改一下用户权限才行。</p>
+<p>先在服务器端登陆mysql（用mysql的root账户），然后选择mysql数据库，执行下面的命令来创建一个可以远程访问的用户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> dbname.* <span class="keyword">to</span> <span class="keyword">user</span>@<span class="string">'IP'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span></span><br></pre></td></tr></table></figure>
+
+<p>ALL表示新建用户user所拥有的权限，dbname表示可以操控的数据库名字（* 为全部），.后面表示了表，IP就是允许登陆到这里的远程ip地址，可以用%表示任意，后面password是密码。</p>
+<p>接着使用<figure class="highlight plain"><figcaption><span>PRIVILEGES```命令刷新数据库权限</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后还需要修改配置文件```/etc/mysql/my.cnf```,找到下面这行在前面加#注释掉，重启mysql即可：</span><br></pre></td></tr></table></figure></p>
+<p>bind-address = 127.0.0.1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 上传代码</span><br><span class="line"></span><br><span class="line">上传文件和代码到服务器可以考虑在服务器端安装ftp服务，但是这次采用scp命令，简单快捷的就可以把本地代码文件等上传到服务器的指定目录了。</span><br><span class="line"></span><br><span class="line">**请注意检查服务器相关目录的写入权限！**</span><br><span class="line"></span><br><span class="line">scp 命令原型：</span><br></pre></td></tr></table></figure>
+
+<p>scp (-r) path/file user@ip:path</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">举个例子：</span><br></pre></td></tr></table></figure>
+
+<p>scp -r /var/www/html/laravel <a href="mailto:user@127.0.1.1" target="_blank" rel="noopener">user@127.0.1.1</a>:/var/www/html</p>
+<pre><code>把本地的```/var/www/html/laravel```文件夹上传到了服务器的```/var/www/html```目录下</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/23/7/" data-id="ck00npf4s0000ak90wonzk71w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lamp/">lamp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/23/HTTP深度剖析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTTP深度剖析
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lamp/">lamp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/lamp/" style="font-size: 10px;">lamp</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/01/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/23/HTTP深度剖析/">HTTP深度剖析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/23/7/">记一次服务器配置(LAMP)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
